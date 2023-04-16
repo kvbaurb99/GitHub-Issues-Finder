@@ -5,6 +5,8 @@ export const issueSlice = createSlice({
     initialState: {
         issues: [],
         isLoading: false,
+        isLoadingEasy: false,
+        isBeginnerFriendly: false,
     },
     reducers: {
         getIssuesFetch: (state) => {
@@ -13,6 +15,15 @@ export const issueSlice = createSlice({
         getIssuesSuccess: (state, action) => {
             state.issues = action.payload;
             state.isLoading = false;
+            state.isBeginnerFriendly = false;
+        },
+        getEasyIssuesFetch: (state) => {
+            state.isLoadingEasy = true;
+        },
+        getEasyIssuesSuccess: (state, action) => {
+            state.issues = action.payload;
+            state.isLoadingEasy = false;
+            state.isBeginnerFriendly = true;
         },
         getIssuesError: (state) => {
             state.isLoading = false;
@@ -20,6 +31,6 @@ export const issueSlice = createSlice({
     }
 })
 
-export const { getIssuesFetch, getIssuesSuccess, getIssuesError } = issueSlice.actions;
+export const { getIssuesFetch, getIssuesSuccess, getIssuesError, getEasyIssuesFetch, getEasyIssuesSuccess } = issueSlice.actions;
 
 export default issueSlice.reducer;
