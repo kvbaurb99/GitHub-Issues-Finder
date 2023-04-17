@@ -6,7 +6,7 @@ function* workGetEasyIssues() {
     const category = yield select(state => state.category.category)
     const issues = yield call(() => fetch(`https://api.github.com/search/issues?q=label:${category}+state:open+label:%22good%20first%20issue%22`));
     const formattedIssues = yield issues.json();
-    const shortenedIssues = yield formattedIssues.items.slice(0, 30);
+    const shortenedIssues = yield formattedIssues.items.slice(0, 50);
     yield put (getEasyIssuesSuccess(shortenedIssues))
 }
 
